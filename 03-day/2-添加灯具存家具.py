@@ -29,7 +29,6 @@ class Home():
 			self.dengs[0].close()
 		else:
 			self.dengs[0].open()
-
 class Bed():
 	def __init__(self,area,name):
 		self.area = area
