@@ -32,11 +32,11 @@ class LoveYou():
 
 		self.day= d.weekday()+1
 
-		self.list=["薛栋炎","刘瑞涛","娄雪嫚","张轩轩","郝竟良","张晨波","王晓俊","李鑫","刘明松","崔利艳","张圆","那思源","韩月瑞","王保轩","贾纪闯","翟宏乐","杨振亚","闫子雄","梁文琦","陈怡杰","韩迪","张世豪","李明瑞","王淋","于奇林","吴金航","王含青","王润泽","庞源松"]
+		self.list=["庄周","妲己","貂蝉","蔡文姬","不知火舞","虞姬","项羽","李白","恺","安琪拉","芈月","梦奇","大乔","小乔","夏侯惇","孙悟空","百里守约","雅典娜","后羿","鲁班","兰陵王","花木兰","韩信","武则天","阿轲","高渐离","白起","吕布","张飞"]
 
 		#第2步，给窗口的可视化起名字
 
-		self.window.title('班级考单词程序')
+		self.window.title('玩游戏选择英雄程序')
 
 		#第3步，设定窗口的大小(长＊宽)
 
@@ -76,7 +76,7 @@ class LoveYou():
 
 			i = random.randint(0,len(self.list)-1)
 
-			str += "呦,你被上帝选中了:-----%s\n"%self.list[i]
+			str += "呦,你被轩轩选中了:-----%s\n"%self.list[i]
 
 			if l == 49:
 
@@ -104,7 +104,7 @@ class LoveYou():
 
 			count = random.randint(50,100)
 
-			str1+="上帝奖励了你们组%d遍"%(count)
+			str1+="轩轩奖励了你%d次出战"%(count)
 
 			self.count.set(str1)
 
@@ -112,7 +112,7 @@ class LoveYou():
 
 			count = random.randint(50,120)
 
-			str1+="上帝奖励了你们组%d遍"%(count)
+			str1+="轩轩奖励了你%d次出战"%(count)
 
 			self.count.set(str1)
 
@@ -120,7 +120,7 @@ class LoveYou():
 
 			count = random.randint(50,140)
 
-			str1+="上帝奖励了你们组%d遍"%(count)
+			str1+="轩轩奖励了你%d次出战"%(count)
 
 			self.count.set(str1)
 
@@ -128,7 +128,7 @@ class LoveYou():
 
 			count = random.randint(50,160)
 
-			str1+="上帝奖励了你们组%d遍"%(count)
+			str1+="轩轩奖励了你%d次出战"%(count)
 
 			self.count.set(str1)
 
@@ -136,7 +136,7 @@ class LoveYou():
 
 			count = random.randint(50,180)
 
-			str1+="上帝奖励了你们组%d遍"%(count)
+			str1+="轩轩奖励了你%d次出战"%(count)
 
 			self.count.set(str1)
 
@@ -174,7 +174,7 @@ class LoveYou():
 
 		now = time.strftime('%Y-%m-%d',time.localtime(time.time()))+"  星期"+str(self.day)
 
-		now += "\n班级总人数:%s人"%str(len(self.list))
+		now += "\n英雄总人数:%s人"%str(len(self.list))
 
 		now	+= "\n正在合理计算中\n"
 
