@@ -15,10 +15,16 @@ class PlaneGame(object):
 		#第一个参数是事件的名字
 		#第二个参数是多长时间执行一次时间
 		#设置定时器事件 - 每秒创建一架敌机
-		self.screen = pygame.time.set_timer(CREATE_ENEMY_EVENT,1000)
+		pygame.time.set_timer(CREATE_ENEMY_EVENT,1000)
 
 		#敌机的精灵组
 		self.enemy_group = pygame.sprite.Group()
+		pygame.init()
+		self.enemy1_down_group = pygame.sprite.Group()
+
+		self.count = 0
+
+		self.score = 0 #分数
 
 	def __create_sprites(self):
 		bg1 = Background()
@@ -34,6 +40,7 @@ class PlaneGame(object):
 		print("游戏开始...")
 
 		while  True:
+			self.count+=1
 			self.clock.tick(FRAME_PER_SEC)
 			self.__event_handler()
 			self.__check_collide()
@@ -58,9 +65,9 @@ class PlaneGame(object):
 #2、初始化速度  随机1-?
 #3、初始化y的位置
 	def __check_collide(self):
-		pass
 		# 1. 子弹摧毁敌机
-		pygame.sprite.groupcollide(self.hero.bullets, self.enemy_group, True, True)
+		enemy_down = pygame.sprite.groupcollide( self.enemy_group,self.hero.bullets, True, True)
+		enemy1_down_group.add(enemy_down)
 
 		# 2. 敌机撞毁英雄
 		enemies = pygame.sprite.spritecollide(self.hero, self.enemy_group, True)
@@ -87,10 +94,27 @@ class PlaneGame(object):
 
 		self.hero.bullets.update()
 		self.hero.bullets.draw(self.screen)
+		self.drawText(str(self.score),SCREEN_RECT.width - 30,50)
+		#敌机销毁
+		for enemy1_down in enemy1_down_group:
+			if self.count % 3 == 0:
+				self.screen.blit(enemy1_down_surface[enemy1_down.down_index],enemy1_down.rect)
+				enemy1_down.down_index += 1
+				if enemy1_down.down_index == 3:
+					self.score +=5
+					enemy1_down_group.remove(enemy1_down)
+					print(self.score)
+
 	@staticmethod		
 	def __game_over():
 		pygame.quit
 		exit()
+	def drawText(self,text,posx,posy,textHeight=48,fontColor=(0,0,0),backgroudColor=(255,255,255)):
+		fontObj = pygame.font.Font(None, textHeight)  # 通过字体文件获得字体对象
+		textSurfaceObj = fontObj.render(text, True,fontColor,backgroudColor)  # 配置要显示的文字
+		textRectObj = textSurfaceObj.get_rect()  # 获得要显示的对象的rect
+		textRectObj.center = (posx, posy)  # 设置显示对象的坐标
+		self.screen.blit(textSurfaceObj, textRectObj)  # 绘制字	
 
 if __name__ == '__main__':
 	game = PlaneGame()
