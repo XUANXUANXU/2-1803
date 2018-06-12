@@ -8,10 +8,11 @@ FRAME_PER_SEC = 60
 
 #敌机事件的常量
 CREATE_ENEMY_EVENT = pygame.USEREVENT
-bg1 = pygame.image.load('./images/enemy0_down1.png')
-bg2 = pygame.image.load('./images/enemy0_down2.png')
-bg3 = pygame.image.load('./images/enemy0_down3.png')
-bg4= pygame.image.load('./images/enemy0_down4.png')
+#爆炸图片
+bg1 = pygame.image.load('./images/1.png')
+bg2 = pygame.image.load('./images/2.png')
+bg3 = pygame.image.load('./images/3.png')
+bg4= pygame.image.load('./images/4.png')
 
 #爆炸的精灵组
 enemy1_down_group = pygame.sprite.Group()
@@ -55,7 +56,7 @@ class Background(GameSprite):
 class Enemy(GameSprite):
 
 	def __init__(self):
-		image_name = "./images/enen.png"
+		image_name = "./images/en.png"
 		super().__init__(image_name)
 		self.speed = random.randint(1,3)
 		
@@ -82,7 +83,7 @@ class Hero(GameSprite):
 		super().__init__(image_name,0)
 		
 		self.rect.centerx = SCREEN_RECT.centerx
-		self.rect.bottom = SCREEN_RECT.bottom - 120
+		self.rect.bottom = SCREEN_RECT.bottom - 10
 		# 创建子弹的精灵组
 		self.bullets = pygame.sprite.Group()
 
@@ -101,7 +102,7 @@ class Hero(GameSprite):
 			self.rect.y += self.speed
 		if keys_pressed[pygame.K_SPACE]:
 			self.fire()
-
+		#控制英雄的边界
 		if self.rect.left < 0:
 			self.rect.left = 0
 		if self.rect.right > SCREEN_RECT.right:
@@ -110,11 +111,11 @@ class Hero(GameSprite):
 			self.rect.top = 0
 		if self.rect.bottom > SCREEN_RECT.bottom:
 			self.rect.bottom = SCREEN_RECT.bottom
-
+	#开火
 	def fire(self):
 		bullet = Bullet()
 
-		# 2. 设置精灵的位置
+		# 2. 设置子弹精灵的位置
 		bullet.rect.bottom = self.rect.y - 20
 		bullet.rect.centerx = self.rect.centerx
 
